@@ -1,36 +1,55 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Manuel Torres · Fotografía de bodas
 
-## Getting Started
+Sitio de portafolio construido con **Next.js (App Router) + Tailwind CSS v4**, imágenes servidas por **Cloudinary** y desplegado en **Vercel**.
 
-First, run the development server:
+Estética: minimalista tipo Apple / LunaUI — tipografía redondeada (Quicksand + Nunito Sans), paleta marfil cálido, fotos con esquinas suaves y proporciones áureas. La fotografía manda; el texto acompaña.
+
+## Estructura
+
+- `/` — Landing (hero, un vistazo, sobre mí, bodas reales, contacto)
+- `/portafolio` — Las 3 bodas
+- `/portafolio/[slug]` — Galería masonry + lightbox (abrir y navegar una a una)
+
+## Desarrollo
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Requiere `.env.local` (ver abajo).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Variables de entorno (`.env.local`)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```
+NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME=hn2odsuq
+CLOUDINARY_API_KEY=...            # solo servidor / script de subida
+CLOUDINARY_API_SECRET=...         # solo servidor / script de subida
+NEXT_PUBLIC_SITE_URL=https://tu-dominio.com
+```
 
-## Learn More
+> `.env*` está en `.gitignore`. El *API secret* nunca debe exponerse como `NEXT_PUBLIC_*`.
 
-To learn more about Next.js, take a look at the following resources:
+## Fotos (Cloudinary)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Las fotos ya están subidas. Para volver a subir desde `Recursos/`:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```bash
+node scripts/upload-to-cloudinary.mjs   # sube y regenera src/data/weddings.json
+```
 
-## Deploy on Vercel
+El manifiesto `src/data/weddings.json` es la fuente de datos de la app (public_id + dimensiones).
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Personalización rápida
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- **Textos, redes, dominio:** `src/lib/site.ts`
+- **Portadas de cada boda:** `COVER_OVERRIDES` en `src/lib/weddings.ts`
+- **Foto del hero / destacada:** `HERO_ID` en `src/app/page.tsx` y `FEATURED_ID` en `src/components/home/Featured.tsx`
+- **Colores / tipografía / radios:** `src/app/globals.css`
+- **Logo:** `node scripts/process-logo.mjs` (recorta el logo y genera favicon)
+
+## Deploy en Vercel
+
+1. Sube el repo a GitHub e impórtalo en Vercel (o `vercel` con la CLI).
+2. En **Settings → Environment Variables** añade las 4 variables de arriba.
+3. Deploy. Actualiza `NEXT_PUBLIC_SITE_URL` con el dominio final (para OG y sitemap).

@@ -1,0 +1,441 @@
+{
+  "generatedAt": "2026-07-22T03:03:55.125Z",
+  "site": {
+    "personal": {
+      "id": "manuel-torres/site/Foto_Personal",
+      "w": 3000,
+      "h": 1996
+    }
+  },
+  "weddings": [
+    {
+      "slug": "paola-andres",
+      "title": "Paola & Andrés",
+      "location": "",
+      "cover": "manuel-torres/paola-andres/_MAN4943",
+      "photos": [
+        {
+          "id": "manuel-torres/paola-andres/_MAN4943",
+          "w": 1996,
+          "h": 3000
+        },
+        {
+          "id": "manuel-torres/paola-andres/_MAN4944",
+          "w": 1996,
+          "h": 3000
+        },
+        {
+          "id": "manuel-torres/paola-andres/_MAN4947",
+          "w": 1996,
+          "h": 3000
+        },
+        {
+          "id": "manuel-torres/paola-andres/_MAN4986",
+          "w": 1996,
+          "h": 3000
+        },
+        {
+          "id": "manuel-torres/paola-andres/_MAN5129",
+          "w": 1996,
+          "h": 3000
+        },
+        {
+          "id": "manuel-torres/paola-andres/_MAN5151",
+          "w": 1996,
+          "h": 3000
+        },
+        {
+          "id": "manuel-torres/paola-andres/_MAN5164",
+          "w": 1996,
+          "h": 3000
+        },
+        {
+          "id": "manuel-torres/paola-andres/_MAN5267",
+          "w": 1996,
+          "h": 3000
+        },
+        {
+          "id": "manuel-torres/paola-andres/_MAN5342",
+          "w": 1996,
+          "h": 3000
+        },
+        {
+          "id": "manuel-torres/paola-andres/_MAN5350",
+          "w": 1996,
+          "h": 3000
+        },
+        {
+          "id": "manuel-torres/paola-andres/_MAN5445",
+          "w": 1996,
+          "h": 3000
+        },
+        {
+          "id": "manuel-torres/paola-andres/_MAN5514",
+          "w": 1996,
+          "h": 3000
+        },
+        {
+          "id": "manuel-torres/paola-andres/_MAN5606",
+          "w": 3000,
+          "h": 1996
+        },
+        {
+          "id": "manuel-torres/paola-andres/_MAN5677",
+          "w": 1996,
+          "h": 3000
+        },
+        {
+          "id": "manuel-torres/paola-andres/_MAN5679",
+          "w": 1996,
+          "h": 3000
+        },
+        {
+          "id": "manuel-torres/paola-andres/_MAN5680",
+          "w": 1996,
+          "h": 3000
+        },
+        {
+          "id": "manuel-torres/paola-andres/_MAN5944",
+          "w": 1996,
+          "h": 3000
+        },
+        {
+          "id": "manuel-torres/paola-andres/_MAN6097",
+          "w": 1996,
+          "h": 3000
+        },
+        {
+          "id": "manuel-torres/paola-andres/_MAN6098",
+          "w": 1996,
+          "h": 3000
+        },
+        {
+          "id": "manuel-torres/paola-andres/_MAN6154",
+          "w": 1996,
+          "h": 3000
+        },
+        {
+          "id": "manuel-torres/paola-andres/_MAN6175",
+          "w": 1996,
+          "h": 3000
+        },
+        {
+          "id": "manuel-torres/paola-andres/_MAN6430",
+          "w": 3000,
+          "h": 1996
+        },
+        {
+          "id": "manuel-torres/paola-andres/_MAN6624",
+          "w": 1996,
+          "h": 3000
+        },
+        {
+          "id": "manuel-torres/paola-andres/_MAN6634",
+          "w": 1996,
+          "h": 3000
+        },
+        {
+          "id": "manuel-torres/paola-andres/_MAN6759",
+          "w": 1996,
+          "h": 3000
+        },
+        {
+          "id": "manuel-torres/paola-andres/_MAN6769",
+          "w": 1996,
+          "h": 3000
+        },
+        {
+          "id": "manuel-torres/paola-andres/_MAN6782",
+          "w": 1996,
+          "h": 3000
+        },
+        {
+          "id": "manuel-torres/paola-andres/_MAN6793",
+          "w": 1996,
+          "h": 3000
+        },
+        {
+          "id": "manuel-torres/paola-andres/_MAN6917",
+          "w": 1996,
+          "h": 3000
+        },
+        {
+          "id": "manuel-torres/paola-andres/_MAN6920",
+          "w": 1996,
+          "h": 3000
+        },
+        {
+          "id": "manuel-torres/paola-andres/_MAN7054",
+          "w": 1996,
+          "h": 3000
+        },
+        {
+          "id": "manuel-torres/paola-andres/_MAN7076",
+          "w": 1996,
+          "h": 3000
+        },
+        {
+          "id": "manuel-torres/paola-andres/_MAN7452",
+          "w": 1996,
+          "h": 3000
+        },
+        {
+          "id": "manuel-torres/paola-andres/_MAN7548",
+          "w": 3000,
+          "h": 1996
+        },
+        {
+          "id": "manuel-torres/paola-andres/_MAN7554",
+          "w": 3000,
+          "h": 1996
+        },
+        {
+          "id": "manuel-torres/paola-andres/_MAN7574",
+          "w": 1996,
+          "h": 3000
+        }
+      ]
+    },
+    {
+      "slug": "paula-victor",
+      "title": "Paula & Victor",
+      "location": "",
+      "cover": "manuel-torres/paula-victor/_MAN2387",
+      "photos": [
+        {
+          "id": "manuel-torres/paula-victor/_MAN2387",
+          "w": 1996,
+          "h": 3000
+        },
+        {
+          "id": "manuel-torres/paula-victor/_MAN2491",
+          "w": 3000,
+          "h": 1996
+        },
+        {
+          "id": "manuel-torres/paula-victor/_MAN2627",
+          "w": 1996,
+          "h": 3000
+        },
+        {
+          "id": "manuel-torres/paula-victor/_MAN2634",
+          "w": 1996,
+          "h": 3000
+        },
+        {
+          "id": "manuel-torres/paula-victor/_MAN2684",
+          "w": 1996,
+          "h": 3000
+        },
+        {
+          "id": "manuel-torres/paula-victor/_MAN2754",
+          "w": 1996,
+          "h": 3000
+        },
+        {
+          "id": "manuel-torres/paula-victor/_MAN3197",
+          "w": 1996,
+          "h": 3000
+        },
+        {
+          "id": "manuel-torres/paula-victor/_MAN3198",
+          "w": 3000,
+          "h": 1996
+        },
+        {
+          "id": "manuel-torres/paula-victor/_MAN3200",
+          "w": 3000,
+          "h": 1996
+        },
+        {
+          "id": "manuel-torres/paula-victor/_MAN3238",
+          "w": 1996,
+          "h": 3000
+        },
+        {
+          "id": "manuel-torres/paula-victor/_MAN3248",
+          "w": 1996,
+          "h": 3000
+        },
+        {
+          "id": "manuel-torres/paula-victor/_MAN3286",
+          "w": 1996,
+          "h": 3000
+        },
+        {
+          "id": "manuel-torres/paula-victor/_MAN3288",
+          "w": 1996,
+          "h": 3000
+        },
+        {
+          "id": "manuel-torres/paula-victor/_MAN3313",
+          "w": 1996,
+          "h": 3000
+        },
+        {
+          "id": "manuel-torres/paula-victor/_MAN3323",
+          "w": 1996,
+          "h": 3000
+        },
+        {
+          "id": "manuel-torres/paula-victor/_MAN3326",
+          "w": 1996,
+          "h": 3000
+        },
+        {
+          "id": "manuel-torres/paula-victor/_MAN3328",
+          "w": 1996,
+          "h": 3000
+        },
+        {
+          "id": "manuel-torres/paula-victor/_MAN3337",
+          "w": 3000,
+          "h": 1996
+        },
+        {
+          "id": "manuel-torres/paula-victor/_MAN3339",
+          "w": 3000,
+          "h": 1996
+        },
+        {
+          "id": "manuel-torres/paula-victor/_MAN3355",
+          "w": 1996,
+          "h": 3000
+        },
+        {
+          "id": "manuel-torres/paula-victor/_MAN3369",
+          "w": 1996,
+          "h": 3000
+        },
+        {
+          "id": "manuel-torres/paula-victor/_MAN3373",
+          "w": 3000,
+          "h": 1996
+        },
+        {
+          "id": "manuel-torres/paula-victor/_MAN3400",
+          "w": 3000,
+          "h": 1996
+        },
+        {
+          "id": "manuel-torres/paula-victor/_MAN3403",
+          "w": 3000,
+          "h": 1996
+        },
+        {
+          "id": "manuel-torres/paula-victor/_MAN3425",
+          "w": 1996,
+          "h": 3000
+        },
+        {
+          "id": "manuel-torres/paula-victor/_MAN3441",
+          "w": 1996,
+          "h": 3000
+        },
+        {
+          "id": "manuel-torres/paula-victor/_MAN3531",
+          "w": 1996,
+          "h": 3000
+        },
+        {
+          "id": "manuel-torres/paula-victor/_MAN3656",
+          "w": 1996,
+          "h": 3000
+        }
+      ]
+    },
+    {
+      "slug": "sofia-diego",
+      "title": "Sofía & Diego",
+      "location": "",
+      "cover": "manuel-torres/sofia-diego/_MAN7131",
+      "photos": [
+        {
+          "id": "manuel-torres/sofia-diego/_MAN7131",
+          "w": 3000,
+          "h": 1996
+        },
+        {
+          "id": "manuel-torres/sofia-diego/_MAN7689",
+          "w": 1996,
+          "h": 3000
+        },
+        {
+          "id": "manuel-torres/sofia-diego/_MAN8404",
+          "w": 1996,
+          "h": 3000
+        },
+        {
+          "id": "manuel-torres/sofia-diego/_MAN8409",
+          "w": 1996,
+          "h": 3000
+        },
+        {
+          "id": "manuel-torres/sofia-diego/_MAN8415",
+          "w": 1996,
+          "h": 3000
+        },
+        {
+          "id": "manuel-torres/sofia-diego/_MAN8704",
+          "w": 1996,
+          "h": 3000
+        },
+        {
+          "id": "manuel-torres/sofia-diego/_MAN8977",
+          "w": 1996,
+          "h": 3000
+        },
+        {
+          "id": "manuel-torres/sofia-diego/_MAN9032",
+          "w": 1996,
+          "h": 3000
+        },
+        {
+          "id": "manuel-torres/sofia-diego/_MAN9959",
+          "w": 1996,
+          "h": 3000
+        },
+        {
+          "id": "manuel-torres/sofia-diego/_MAN9964",
+          "w": 3000,
+          "h": 1996
+        },
+        {
+          "id": "manuel-torres/sofia-diego/_MAN9973",
+          "w": 3000,
+          "h": 1996
+        },
+        {
+          "id": "manuel-torres/sofia-diego/_MAN9974",
+          "w": 1996,
+          "h": 3000
+        },
+        {
+          "id": "manuel-torres/sofia-diego/_MAN9975",
+          "w": 1996,
+          "h": 3000
+        },
+        {
+          "id": "manuel-torres/sofia-diego/_MAN9976",
+          "w": 1996,
+          "h": 3000
+        },
+        {
+          "id": "manuel-torres/sofia-diego/_MAN9977",
+          "w": 1996,
+          "h": 3000
+        },
+        {
+          "id": "manuel-torres/sofia-diego/_MAN9978",
+          "w": 1996,
+          "h": 3000
+        },
+        {
+          "id": "manuel-torres/sofia-diego/_MAN9979",
+          "w": 1996,
+          "h": 3000
+        }
+      ]
+    }
+  ]
+}

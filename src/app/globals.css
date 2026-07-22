@@ -1,26 +1,127 @@
 @import "tailwindcss";
 
+/* ---------------------------------------------------------------
+   Manuel Torres — sistema de diseño
+   Marfil cálido · tipografía redondeada · minimal tipo Apple/LunaUI
+   Ritmo áureo (φ = 1.618)
+---------------------------------------------------------------- */
+@theme {
+  --color-bg: #faf7f2; /* marfil cálido */
+  --color-surface: #ffffff;
+  --color-ink: #17140f; /* casi negro cálido */
+  --color-muted: #6b635a;
+  --color-faint: #78706a; /* contraste AA para eyebrows/labels sobre marfil */
+  --color-accent: #a79b8e; /* taupe */
+  --color-line: #e7e0d6;
+
+  --font-display: var(--font-quicksand);
+  --font-body: var(--font-nunito);
+
+  --radius-photo: 14px; /* redondeo sutil en fotos */
+  --radius-card: 20px;
+
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* espaciado áureo */
+  --space-section: clamp(4rem, 3rem + 6vw, 9rem);
+  --shell: clamp(1.25rem, 1rem + 3vw, 4.5rem);
+  --dur: 700ms;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+html {
+  scroll-behavior: smooth;
+  background: var(--color-bg);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
   }
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-bg);
+  color: var(--color-ink);
+  font-family: var(--font-body), ui-sans-serif, system-ui, sans-serif;
+  font-feature-settings: "ss01";
+}
+
+::selection {
+  background: var(--color-ink);
+  color: var(--color-bg);
+}
+
+/* Contenedor principal */
+.shell {
+  padding-inline: var(--shell);
+  margin-inline: auto;
+  max-width: 96rem;
+}
+
+/* Titulares redondeados */
+.display {
+  font-family: var(--font-display), ui-sans-serif, system-ui, sans-serif;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  line-height: 1.02;
+}
+
+/* Eyebrow / etiqueta menor */
+.eyebrow {
+  font-family: var(--font-display), sans-serif;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.28em;
+  font-size: 0.72rem;
+  color: var(--color-faint);
+}
+
+/* ---- Reveal: fade-up al entrar en viewport ---- */
+.reveal {
+  opacity: 0;
+  transform: translateY(16px);
+  transition:
+    opacity var(--dur) var(--ease-out-expo),
+    transform var(--dur) var(--ease-out-expo);
+  will-change: opacity, transform;
+}
+.reveal[data-shown="true"] {
+  opacity: 1;
+  transform: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+/* ---- Lightbox (yet-another-react-lightbox) sobre marfil ---- */
+.yarl__counter {
+  color: var(--color-muted);
+  font-family: var(--font-display), sans-serif;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  font-size: 0.8rem;
+  padding: 1.25rem 1.5rem;
+  text-shadow: none;
+}
+.yarl__slide_image {
+  border-radius: var(--radius-photo);
+  box-shadow: 0 24px 60px -30px rgba(23, 20, 15, 0.35);
+}
+
+/* Zoom lento sobre fotos con hover (solo dispositivos con puntero fino) */
+@media (hover: hover) {
+  .photo-hover img {
+    transition: transform 900ms var(--ease-out-expo);
+  }
+  .photo-hover:hover img {
+    transform: scale(1.04);
+  }
 }
