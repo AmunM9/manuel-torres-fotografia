@@ -15,7 +15,11 @@ export function Glimpse() {
         </div>
       </Reveal>
       <Reveal>
-        <Gallery photos={photos} title="Manuel Torres" />
+        <Gallery
+          photos={photos}
+          title="Manuel Torres"
+          hideOnMobile={["manuel-torres/paola-andres/_MAN4986"]}
+        />
       </Reveal>
     </section>
   );

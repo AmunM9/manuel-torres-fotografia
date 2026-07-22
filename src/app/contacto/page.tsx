@@ -1,9 +1,8 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { CloudPhoto } from "@/components/ui/CloudPhoto";
 import { Reveal } from "@/components/ui/Reveal";
 import { Pill } from "@/components/ui/Pill";
-import { InstagramIcon, WhatsappIcon, ArrowIcon } from "@/components/ui/icons";
+import { ContactLinks } from "@/components/ui/ContactLinks";
 import { SITE } from "@/lib/site";
 import { personalPhoto } from "@/lib/weddings";
 
@@ -43,49 +42,9 @@ export default function ContactPage() {
             todo lo que imaginas.
           </p>
 
-          <div className="mt-9 flex max-w-xl flex-col gap-4 sm:flex-row">
-            <ContactLink
-              href={SITE.whatsapp}
-              label="WhatsApp"
-              sub="Respuesta rápida"
-              icon={<WhatsappIcon className="h-6 w-6" />}
-            />
-            <ContactLink
-              href={SITE.instagram}
-              label="Instagram"
-              sub={SITE.instagramHandle}
-              icon={<InstagramIcon className="h-6 w-6" />}
-            />
-          </div>
+          <ContactLinks className="mt-9 max-w-xl" />
         </Reveal>
       </div>
     </div>
-  );
-}
-
-interface ContactLinkProps {
-  href: string;
-  label: string;
-  sub: string;
-  icon: React.ReactNode;
-}
-
-function ContactLink({ href, label, sub, icon }: ContactLinkProps) {
-  return (
-    <Link
-      href={href}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="group flex flex-1 items-center gap-4 rounded-card border border-line bg-surface/50 p-5 transition-all duration-300 hover:border-ink hover:bg-surface"
-    >
-      <span className="inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-ink text-bg transition-colors group-hover:bg-accent">
-        {icon}
-      </span>
-      <span className="flex-1 text-left">
-        <span className="block font-display font-semibold text-ink">{label}</span>
-        <span className="block text-sm text-muted">{sub}</span>
-      </span>
-      <ArrowIcon className="h-5 w-5 text-faint transition-transform duration-300 group-hover:translate-x-1 group-hover:text-ink" />
-    </Link>
   );
 }

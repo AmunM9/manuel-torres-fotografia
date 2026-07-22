@@ -9,24 +9,24 @@ import { personalPhoto } from "@/lib/weddings";
  */
 export function About() {
   return (
-    <section className="shell mt-[var(--space-section)]">
-      <div className="grid items-center gap-10 lg:grid-cols-12 lg:gap-16">
-        <Reveal className="lg:col-span-6">
-          <div className="relative">
+    <section className="border-t border-line mt-[var(--space-section)]">
+      <div className="shell grid items-center gap-10 pt-14 sm:pt-20 lg:grid-cols-12 lg:gap-16">
+        <Reveal className="lg:col-span-4">
+          <div className="relative mx-auto w-56 max-w-full lg:mx-0 lg:w-full">
             <div
               aria-hidden
-              className="absolute -left-8 -bottom-8 -z-10 hidden aspect-square w-40 rounded-full border border-accent/25 lg:block"
+              className="absolute -left-6 -bottom-6 -z-10 hidden aspect-square w-24 rounded-full border border-accent/25 lg:block"
             />
             <CloudPhoto
               photo={personalPhoto}
               alt="Manuel Torres, fotógrafo de bodas"
               aspect="4/5"
-              sizes="(max-width: 1024px) 100vw, 48vw"
+              sizes="(max-width: 1024px) 224px, 22vw"
             />
           </div>
         </Reveal>
 
-        <Reveal delay={100} className="lg:col-span-6">
+        <Reveal delay={100} className="lg:col-span-8">
           <Pill>Sobre mí</Pill>
           <h2 className="display mt-6 text-[clamp(1.9rem,1rem+3vw,3.4rem)]">
             Soy Manuel Torres

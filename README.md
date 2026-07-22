@@ -17,18 +17,24 @@ npm install
 npm run dev
 ```
 
-Requiere `.env.local` (ver abajo).
+Requiere `.env.local` (copia desde `.env.example`).
 
-## Variables de entorno (`.env.local`)
+## Variables de entorno
+
+```bash
+cp .env.example .env.local
+```
+
+Variables necesarias:
 
 ```
-NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME=hn2odsuq
-CLOUDINARY_API_KEY=...            # solo servidor / script de subida
-CLOUDINARY_API_SECRET=...         # solo servidor / script de subida
+NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME=...   # público
+CLOUDINARY_API_KEY=...                  # solo servidor / script de subida
+CLOUDINARY_API_SECRET=...               # solo servidor / script de subida — nunca NEXT_PUBLIC_*
 NEXT_PUBLIC_SITE_URL=https://tu-dominio.com
 ```
 
-> `.env*` está en `.gitignore`. El *API secret* nunca debe exponerse como `NEXT_PUBLIC_*`.
+> `.env.local` y el resto de `.env*` están en `.gitignore`. No subas credenciales al repo.
 
 ## Fotos (Cloudinary)
 

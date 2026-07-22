@@ -23,6 +23,7 @@
 # misc
 .DS_Store
 *.pem
+Thumbs.db
 
 # debug
 npm-debug.log*
@@ -30,12 +31,27 @@ yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
 
-# env files (can opt-in for committing if needed)
+# env files — nunca subir credenciales (.env.example sí se commitea)
 .env*
+!.env.example
 
-# vercel
+# fotos originales locales (ya están en Cloudinary; son muy pesadas)
+/Recursos/
+
+# Vercel (projectId, orgId, tokens locales)
 .vercel
+
+# herramientas de agentes / IDE (solo local)
+.agents/
+.claude/
+skills-lock.json
+.cursor/
 
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# editores (opcional)
+.idea/
+*.swp
+*.swo

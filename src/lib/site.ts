@@ -18,4 +18,8 @@ export const SITE = {
   instagram: "https://www.instagram.com/manueltorresfotografia",
   instagramHandle: "@manueltorresfotografia",
   whatsapp: `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`,
+  // Formato E.164 para tel: y schema.org (telephone).
+  phoneE164: `+${whatsappNumber}`,
+  // Bogotá como base de operación — el negocio se desplaza a cada venue, no atiende en un local fijo.
+  baseCity: "Bogotá",
 } as const;

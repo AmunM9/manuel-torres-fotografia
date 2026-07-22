@@ -64,8 +64,8 @@ export function photoById(id: string): Photo {
  */
 const HERO_IDS = [
   P("paola-andres", "7574"),
-  P("sofia-diego", "9975"),
-  P("paula-victor", "2684"),
+  P("paula-victor", "3313"),
+  P("paola-andres", "5151"),
   P("paola-andres", "6759"),
   P("sofia-diego", "8704"),
 ];
@@ -75,25 +75,53 @@ export function heroPhotos(): Photo[] {
 }
 
 /**
- * "Un vistazo": selección curada (las mejores, sin repetir portadas/hero ni
- * fotos similares) ordenada para que dos fotos seguidas no sean de la misma
- * boda — así se siente más variado, como si fueran más de tres bodas.
+ * "Un vistazo": selección curada, solo verticales, sin repetir portadas/hero
+ * ni fotos similares entre sí. El orden intercala las tres bodas (nunca dos
+ * fotos seguidas de la misma) y, dentro de cada boda, prioriza primero fotos
+ * de pareja y novia — las de novio quedan más hacia el final — para que la
+ * apertura de la galería se sienta con más parejas/novias y, aun así, se
+ * perciba variada, como si fueran más de tres bodas.
  */
 const GLIMPSE_IDS = [
-  P("paola-andres", "5151"),
-  P("paula-victor", "2387"),
+  P("paola-andres", "6917"),
+  P("paula-victor", "3656"),
   P("sofia-diego", "9032"),
-  P("paola-andres", "5164"),
-  P("paula-victor", "3238"),
+  P("paola-andres", "6769"),
+  P("paula-victor", "3197"),
+  P("sofia-diego", "9976"),
+  P("paola-andres", "5267"),
+  P("paula-victor", "2627"),
+  P("sofia-diego", "8404"),
+  P("paola-andres", "5151"),
+  P("paula-victor", "3425"),
   P("sofia-diego", "9959"),
-  P("paola-andres", "6782"),
-  P("paula-victor", "3369"),
+  P("paola-andres", "4986"),
+  P("paula-victor", "2754"),
   P("sofia-diego", "8977"),
-  P("paola-andres", "5129"),
-  P("paula-victor", "3286"),
+  P("paola-andres", "5164"),
+  P("paula-victor", "3355"),
+  P("sofia-diego", "9974"),
+  P("paola-andres", "6097"),
+  P("paula-victor", "3326"),
+  P("sofia-diego", "9977"),
   P("paola-andres", "5679"),
+  P("paula-victor", "3531"),
+  P("paola-andres", "5514"),
+  P("paula-victor", "2387"),
+  P("paola-andres", "6793"),
+  P("paula-victor", "3248"),
 ];
 
 export function glimpsePhotos(): Photo[] {
   return GLIMPSE_IDS.map(photoById);
+}
+
+/**
+ * Muestra compacta del portafolio para las páginas de ubicación (pSEO):
+ * las 9 primeras del listado de "un vistazo" (ya priorizadas pareja/novia,
+ * sin repetir boda consecutiva). Se reutiliza la misma selección en todas
+ * las páginas de municipio porque ninguna foto tiene ubicación confirmada.
+ */
+export function locationGalleryPhotos(): Photo[] {
+  return GLIMPSE_IDS.slice(0, 9).map(photoById);
 }
