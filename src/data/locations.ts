@@ -10,7 +10,7 @@
  * para mostrar fotos reales de ese lugar específico.
  */
 
-export type Department = "Cundinamarca" | "Boyacá" | "Tolima" | "Meta";
+export type Department = "Cundinamarca" | "Boyacá" | "Tolima" | "Meta" | "Bogotá D.C.";
 
 /** Fase de lanzamiento — controla prioridad de sitemap e indexación. */
 export type Phase = 1 | 2 | 3;
@@ -50,7 +50,7 @@ export const REGION_HUBS: RegionHub[] = [
     name: "Sabana de Bogotá",
     shortName: "Sabana de Bogotá",
     description:
-      "La Sabana de Bogotá reúne los municipios de Sabana Centro, Sabana Occidente y la provincia de Soacha: el corazón de las fincas, haciendas y salones campestres donde más bodas fotografío cada año.",
+      "Bogotá y la Sabana — Sabana Centro, Sabana Occidente y la provincia de Soacha: el corazón de las fincas, haciendas y salones campestres donde más bodas fotografío cada año.",
     phase: 1,
   },
   {
@@ -77,6 +77,28 @@ export const REGION_HUBS: RegionHub[] = [
  * con variables. Prioridad máxima de lanzamiento e indexación.
  */
 export const SABANA_LOCATIONS: Location[] = [
+  {
+    slug: "bogota",
+    name: "Bogotá",
+    region: "sabana-de-bogota",
+    province: "Distrito Capital",
+    department: "Bogotá D.C.",
+    distanceKm: 0,
+    distanceApprox: false,
+    phase: 1,
+    indexable: true,
+    facts: [
+      "Capital de Colombia, con cerca de 8 millones de habitantes y la mayor variedad de salones, hoteles y haciendas para bodas del país.",
+      "El cerro de Monserrate, con su santuario y su vista panorámica de la ciudad, es uno de los telones de fondo más reconocibles para fotos de boda en Bogotá.",
+    ],
+    intro:
+      "Bogotá es donde vivo y trabajo la mayor parte del tiempo: aquí cubro bodas en salones de eventos, hoteles y también en las haciendas campestres que existen dentro de la misma ciudad, además de servir de base para las bodas de finca en la Sabana y el resto de Cundinamarca.",
+    body: [
+      "Bogotá, D.C. no es un municipio de Cundinamarca sino su propio Distrito Capital: una ciudad de casi 8 millones de habitantes con la oferta más grande y variada de salones de eventos, hoteles y clubes del país. La ciudad también tiene su propia zona campestre, en localidades como Suba, Usme y Ciudad Bolívar, con haciendas para matrimonios como Haciendas Trinity Club (vía La Calera, con vista panorámica sobre la ciudad), Hacienda Común y Silvestre y Hacienda Chic.",
+      "Para quienes se casan por la iglesia o quieren fotos con arquitectura histórica, el centro de Bogotá —La Candelaria— conserva calles y templos coloniales, mientras que el cerro de Monserrate ofrece una vista panorámica de la ciudad que suele aparecer en el book de pareja de quienes se casan aquí. La ciudad también tiene barrios y zonas más modernas —Chicó, Usaquén, el norte de la ciudad— que dan un fondo urbano y contemporáneo, distinto al de las fincas de la Sabana.",
+      "Cubrir una boda en Bogotá significa moverse entre estilos muy distintos en un mismo día: interiores de hotel o salón, arquitectura colonial o moderna, y en algunos casos naturaleza dentro de la misma ciudad. Es también mi base de operación para todas las bodas de finca en la Sabana de Bogotá y el resto de Cundinamarca — normalmente empiezo el día aquí antes de trasladarme al lugar del evento.",
+    ],
+  },
   {
     slug: "chia",
     name: "Chía",
@@ -504,7 +526,11 @@ export const SABANA_LOCATIONS: Location[] = [
     distanceKm: 15,
     distanceApprox: true,
     phase: 1,
-    indexable: true,
+    // Desactivado a pedido del cliente: mercado de bodas de finca no le
+    // interesa (poca concentración de salones/haciendas reconocidos frente
+    // al resto de la Sabana). La página sigue existiendo (enlaces internos
+    // no se rompen) pero no se indexa ni entra al sitemap.
+    indexable: false,
     facts: [
       "Forma parte de la provincia de Soacha, oficialmente distinta de las provincias de Sabana Centro y Sabana Occidente, aunque se agrupa comercialmente dentro del área metropolitana de Bogotá.",
       "Uno de los municipios más poblados de Cundinamarca por su contigüidad con el sur de Bogotá.",

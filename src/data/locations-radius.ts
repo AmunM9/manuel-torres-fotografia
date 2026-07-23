@@ -12,8 +12,12 @@ import type { Location, Department } from "@/data/locations";
  *
  * A diferencia de la fase 2, prácticamente todos estos municipios tienen un
  * dato distintivo real y verificado (son destinos turísticos conocidos), así
- * que el contenido es más rico que el del resto de Cundinamarca. Aun así
- * quedan `indexable: false` hasta revisión, como el resto de fase 2/3.
+ * que el contenido es más rico que el del resto de Cundinamarca.
+ *
+ * El subconjunto en `ACTIVATED` ya se activó tras investigar evidencia real
+ * de mercado de bodas (fincas/haciendas con nombre propio, planeadores de
+ * matrimonios especializados, listados en directorios de matrimonio.com.co)
+ * — no solo por ser destino turístico en general.
  */
 
 interface RawTown {
@@ -37,7 +41,7 @@ const TOWNS: RawTown[] = [
     department: "Boyacá",
     province: "Boyacá",
     distanceKm: 177,
-    fact: "tener la arquitectura colonial mejor conservada de Colombia y la plaza principal empedrada más grande del país, además de un mercado consolidado de hoteles boutique y fincas para bodas",
+    fact: "la arquitectura colonial mejor conservada de Colombia y la plaza principal empedrada más grande del país, además de un mercado consolidado de bodas de destino, con planeadores de matrimonios especializados y haciendas como Casa de Buganvilias y Hacienda Molino La Rosita",
   },
   {
     name: "Sáchica",
@@ -58,14 +62,14 @@ const TOWNS: RawTown[] = [
     department: "Boyacá",
     province: "Boyacá",
     distanceKm: 187,
-    fact: "sus aguas termales, el Lago Sochagota y el sitio histórico del Pantano de Vargas",
+    fact: "sus venues históricos para matrimonios, como la Casona del Salitre —monumento nacional— y el Hotel Hacienda El Salitre, además de sus aguas termales y el Lago Sochagota",
   },
   {
     name: "Duitama",
     department: "Boyacá",
     province: "Boyacá",
     distanceKm: 200,
-    fact: "ser centro comercial y de transporte de la provincia de Sugamuxi",
+    fact: "sus haciendas reconocidas para matrimonios, como la centenaria Hacienda Venecia, además de ser centro comercial y de transporte de la provincia de Sugamuxi",
   },
   {
     name: "Tibasosa",
@@ -93,7 +97,7 @@ const TOWNS: RawTown[] = [
     department: "Tolima",
     province: "Tolima",
     distanceKm: 98,
-    fact: "su clima cálido y sus clubes y piscinas recreativas, uno de los destinos de fin de semana más populares desde Bogotá",
+    fact: "su mercado propio de fincas y haciendas para matrimonios, como Villa Ceci, Finca Villa Magaly y Posada Monte de Sión, además de su clima cálido",
   },
   {
     name: "Flandes",
@@ -114,14 +118,14 @@ const TOWNS: RawTown[] = [
     department: "Tolima",
     province: "Tolima",
     distanceKm: 198,
-    fact: "ser la capital del Tolima, conocida como la 'capital musical de Colombia' por su tradición de bambuco",
+    fact: "su condición de capital del Tolima y salones para matrimonios como Casa Loma Eventos, además de su tradición musical como 'capital del bambuco'",
   },
   {
     name: "Villavicencio",
     department: "Meta",
     province: "Meta",
     distanceKm: 116,
-    fact: "ser conocida como la 'puerta al Llano', con fincas llaneras y buena infraestructura hotelera y de eventos",
+    fact: "su fama como la 'puerta al Llano', con fincas llaneras para bodas como La Zarabanda y Finca Hotel Casa Baquero, y buena infraestructura hotelera y de eventos",
   },
   {
     name: "Restrepo",
@@ -151,6 +155,16 @@ function factToBullet(fact: string): string {
   return clean.charAt(0).toUpperCase() + clean.slice(1) + ".";
 }
 
+/** Municipios activados tras confirmar evidencia real de mercado de bodas (ver nota arriba). */
+const ACTIVATED = new Set<string>([
+  "Villa de Leyva",
+  "Melgar",
+  "Villavicencio",
+  "Duitama",
+  "Paipa",
+  "Ibagué",
+]);
+
 export const RADIUS_PHASE3: Location[] = TOWNS.map((t) => {
   const slug = slugify(t.name);
   const { intro, body } = buildLocationContent({
@@ -169,7 +183,7 @@ export const RADIUS_PHASE3: Location[] = TOWNS.map((t) => {
     distanceKm: t.distanceKm,
     distanceApprox: true,
     phase: 3,
-    indexable: false, // se activa por lotes tras revisión — ver docs/pseo-plan.md
+    indexable: ACTIVATED.has(t.name),
     facts: [factToBullet(t.fact)],
     intro,
     body,
