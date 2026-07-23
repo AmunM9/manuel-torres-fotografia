@@ -25,9 +25,15 @@ export function Footer() {
             </span>
           </Link>
           <p className="font-display text-sm text-muted max-w-xs">
-            Fotografía de bodas.{" "}
+            Fotógrafo de bodas en Bogotá y Cundinamarca.{" "}
             <span className="text-ink">{SITE.bookingNote}.</span>
           </p>
+          <a
+            href={`tel:${SITE.phoneE164}`}
+            className="mt-2 inline-block font-display text-sm text-muted transition-colors hover:text-ink"
+          >
+            {SITE.phoneE164}
+          </a>
         </div>
 
         <div className="flex items-center gap-3">

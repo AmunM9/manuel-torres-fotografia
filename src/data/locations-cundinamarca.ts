@@ -11,9 +11,13 @@ import type { Location } from "@/data/locations";
  * vez de inventarlo — el contenido de esa página se apoya solo en datos
  * ciertos (provincia, distancia).
  *
- * Todas quedan `indexable: false` (noindex,follow) hasta revisión manual por
- * lotes — ver docs/pseo-plan.md para el criterio de cuándo pasar cada una a
- * indexable: true.
+ * La mayoría queda `indexable: false` (noindex,follow) hasta revisión manual
+ * por lotes — ver docs/pseo-plan.md. El subconjunto en `ACTIVATED` ya se
+ * activó tras investigar evidencia real de mercado de bodas (fincas/salones
+ * con nombre propio, listados en directorios de matrimonio.com.co, etc.) por
+ * municipio — no por cercanía geográfica. La Vega y San Francisco se
+ * activaron por decisión explícita del cliente aunque la evidencia de
+ * mercado sea más débil (La Vega) o nula (San Francisco).
  */
 
 interface RawTown {
@@ -48,7 +52,7 @@ const TOWNS: RawTown[] = [
     name: "Girardot",
     province: "Alto Magdalena",
     distanceKm: 134,
-    fact: "ser un puerto turístico histórico sobre el río Magdalena y destino vacacional clásico de clima cálido",
+    fact: "su mercado propio de fincas para matrimonios, como Finca Villa Rosita y Hacienda San Luis de Peñalisa, además de su tradición como destino vacacional sobre el río Magdalena",
   },
   { name: "Ricaurte", province: "Alto Magdalena", distanceKm: 134, fact: "su zona hotelera y de clubes vacacionales, contigua a Girardot" },
   { name: "Tocaima", province: "Alto Magdalena", distanceKm: 104, fact: "sus balnearios y aguas termales de origen sulfuroso" },
@@ -63,14 +67,24 @@ const TOWNS: RawTown[] = [
     name: "Guaduas",
     province: "Bajo Magdalena",
     distanceKm: 117,
-    fact: "ser cuna de la heroína Policarpa Salavarrieta y por su casco colonial declarado bien de interés cultural",
+    fact: "su finca para matrimonios El Molino, además de ser cuna de la heroína Policarpa Salavarrieta y tener un casco colonial declarado bien de interés cultural",
   },
   { name: "Caparrapí", province: "Bajo Magdalena", distanceKm: 170, fact: "su producción panelera reconocida en la región" },
   { name: "Puerto Salgar", province: "Bajo Magdalena", distanceKm: 193 },
 
   // Gualivá
-  { name: "Villeta", province: "Gualivá", distanceKm: 90, fact: "su clima cálido y su tradición como destino de fincas y piscinas de descanso" },
-  { name: "La Vega", province: "Gualivá", distanceKm: 70 },
+  {
+    name: "Villeta",
+    province: "Gualivá",
+    distanceKm: 90,
+    fact: "sus fincas y clubes orientados a bodas y eventos, como el Club Social Villeta y varias propiedades de Marbar Hoteles, además de su clima cálido",
+  },
+  {
+    name: "La Vega",
+    province: "Gualivá",
+    distanceKm: 70,
+    fact: "su cercanía a Girardot, La Mesa y Fusagasugá, la zona de clima cálido más buscada para bodas de finca cerca de Bogotá",
+  },
   { name: "Sasaima", province: "Gualivá", distanceKm: 75, fact: "su producción de mandarina y otros cítricos" },
   { name: "Albán", province: "Gualivá", distanceKm: 60 },
   { name: "San Francisco", province: "Gualivá", distanceKm: 65 },
@@ -83,8 +97,18 @@ const TOWNS: RawTown[] = [
   { name: "La Peña", province: "Gualivá", distanceKm: 110 },
 
   // Guavio
-  { name: "La Calera", province: "Guavio", distanceKm: 30, fact: "sus restaurantes campestres y la cercanía al embalse de San Rafael" },
-  { name: "Guasca", province: "Guavio", distanceKm: 55, fact: "su cercanía al embalse de Tominé" },
+  {
+    name: "La Calera",
+    province: "Guavio",
+    distanceKm: 30,
+    fact: "sus haciendas dedicadas a eventos y matrimonios, como Villa de Lagos, Hacienda Casaloma y Finca La Lomita, además de sus restaurantes campestres",
+  },
+  {
+    name: "Guasca",
+    province: "Guavio",
+    distanceKm: 55,
+    fact: "su propio mercado de haciendas para matrimonios, con venues como Naturaleza Muisca y Cabañas y Eventos Villa Helena, además de su cercanía al embalse de Tominé",
+  },
   {
     name: "Guatavita",
     province: "Guavio",
@@ -134,7 +158,12 @@ const TOWNS: RawTown[] = [
 
   // Sumapaz
   { name: "Silvania", province: "Sumapaz", distanceKm: 57, fact: "su producción de mango" },
-  { name: "Fusagasugá", province: "Sumapaz", distanceKm: 64, fact: "ser conocida como 'la ciudad jardín de Colombia'" },
+  {
+    name: "Fusagasugá",
+    province: "Sumapaz",
+    distanceKm: 64,
+    fact: "su fama como 'la ciudad jardín de Colombia' y sus haciendas para matrimonios, como Hacienda Coloma y Finca Castillo La Fortaleza",
+  },
   { name: "Granada", province: "Sumapaz", distanceKm: 68 },
   { name: "Tibacuy", province: "Sumapaz", distanceKm: 75 },
   { name: "Pasca", province: "Sumapaz", distanceKm: 75 },
@@ -149,9 +178,19 @@ const TOWNS: RawTown[] = [
   { name: "El Colegio", province: "Tequendama", distanceKm: 48 },
   { name: "Tena", province: "Tequendama", distanceKm: 52 },
   { name: "Anolaima", province: "Tequendama", distanceKm: 60, fact: "su reconocida producción frutícola" },
-  { name: "La Mesa", province: "Tequendama", distanceKm: 63, fact: "ser zona tradicional de fincas de recreo bogotanas" },
+  {
+    name: "La Mesa",
+    province: "Tequendama",
+    distanceKm: 63,
+    fact: "sus haciendas reconocidas para matrimonios, como Hacienda El Caliche, Hacienda Siete Sentidos y Finca Las Palmas",
+  },
   { name: "Cachipay", province: "Tequendama", distanceKm: 68, fact: "su producción de café" },
-  { name: "Anapoima", province: "Tequendama", distanceKm: 86, fact: "su clima cálido y su historia como destino clásico de descanso para familias bogotanas" },
+  {
+    name: "Anapoima",
+    province: "Tequendama",
+    distanceKm: 86,
+    fact: "sus fincas y haciendas dedicadas a matrimonios, como Palermo Campestre Anapoima y Finca Palomango, además de su clima cálido",
+  },
   { name: "Quipile", province: "Tequendama", distanceKm: 85 },
   { name: "Viotá", province: "Tequendama", distanceKm: 95, fact: "haber sido un histórico epicentro cafetero" },
   { name: "Apulo", province: "Tequendama", distanceKm: 95, fact: "sus balnearios sobre el río Apulo, cerca del Magdalena" },
@@ -175,6 +214,26 @@ function factToBullet(fact: string): string {
   return clean.charAt(0).toUpperCase() + clean.slice(1) + ".";
 }
 
+/**
+ * Municipios activados para indexación tras investigar evidencia real de
+ * mercado de bodas (fincas/haciendas con nombre propio verificadas en
+ * directorios de matrimonio.com.co y contenido editorial de bodas de
+ * destino). La Vega y San Francisco se activaron por pedido explícito del
+ * cliente, no por evidencia de mercado — ver nota arriba.
+ */
+const ACTIVATED = new Set<string>([
+  "Girardot",
+  "Villeta",
+  "La Vega",
+  "San Francisco",
+  "La Calera",
+  "Guaduas",
+  "Fusagasugá",
+  "La Mesa",
+  "Anapoima",
+  "Guasca", // reemplaza a Soacha (desactivado): página dedicada en matrimonio.com.co + venues con nombre propio
+]);
+
 export const CUNDINAMARCA_PHASE2: Location[] = TOWNS.map((t) => {
   const slug = slugify(t.name);
   const { intro, body } = buildLocationContent({
@@ -193,7 +252,7 @@ export const CUNDINAMARCA_PHASE2: Location[] = TOWNS.map((t) => {
     distanceKm: t.distanceKm,
     distanceApprox: true,
     phase: 2,
-    indexable: false, // se activa por lotes tras revisión — ver docs/pseo-plan.md
+    indexable: ACTIVATED.has(t.name),
     facts: t.fact ? [factToBullet(t.fact)] : [],
     intro,
     body,

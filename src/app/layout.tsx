@@ -5,6 +5,7 @@ import "./globals.css";
 import { Nav } from "@/components/nav/Nav";
 import { Footer } from "@/components/nav/Footer";
 import { SITE } from "@/lib/site";
+import { siteJsonLd } from "@/lib/schema";
 
 const quicksand = Quicksand({
   variable: "--font-quicksand",
@@ -20,24 +21,34 @@ const nunitoSans = Nunito_Sans({
   display: "swap",
 });
 
+const BRAND_TITLE = `${SITE.name} · Fotógrafo de Bodas en Bogotá, Colombia`;
+
 export const metadata: Metadata = {
   metadataBase: new URL(SITE.url),
   title: {
-    default: `${SITE.name} · Fotografía de bodas`,
+    default: BRAND_TITLE,
     template: `%s · ${SITE.name}`,
   },
   description: SITE.description,
+  keywords: [
+    "fotógrafo de bodas Bogotá",
+    "fotógrafo de bodas Colombia",
+    "Manuel Torres fotógrafo",
+    "Manuel Torres fotografía",
+    "fotografía de bodas Bogotá",
+    "fotógrafo de bodas Cundinamarca",
+  ],
   openGraph: {
     type: "website",
     locale: "es_ES",
     url: SITE.url,
     siteName: SITE.name,
-    title: `${SITE.name} · Fotografía de bodas`,
+    title: BRAND_TITLE,
     description: SITE.description,
   },
   twitter: {
     card: "summary_large_image",
-    title: `${SITE.name} · Fotografía de bodas`,
+    title: BRAND_TITLE,
     description: SITE.description,
   },
 };
@@ -51,6 +62,11 @@ export default function RootLayout({
       className={`${quicksand.variable} ${nunitoSans.variable} h-full`}
     >
       <body className="min-h-full flex flex-col bg-bg text-ink">
+        <script
+          type="application/ld+json"
+          // eslint-disable-next-line react/no-danger
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(siteJsonLd()) }}
+        />
         <Nav />
         <main className="flex-1">{children}</main>
         <Footer />

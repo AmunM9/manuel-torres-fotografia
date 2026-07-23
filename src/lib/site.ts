@@ -11,7 +11,7 @@ export const SITE = {
   // Cambiar por el dominio real tras el deploy en Vercel.
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.manueltorres.com.co",
   description:
-    "Fotografía de bodas editorial y cinematográfica. Historias reales contadas con luz, emoción y detalle.",
+    "Fotógrafo de bodas en Bogotá, Colombia, con un estilo editorial y cinematográfico. Historias reales contadas con luz, emoción y detalle, en Bogotá, la Sabana y toda Cundinamarca.",
   // Frase secundaria — el texto acompaña, la foto manda.
   tagline: "Guardo para siempre lo que dura un instante.",
   bookingNote: "Tomando reservas para 2026 / 27",
