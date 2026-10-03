@@ -28,12 +28,7 @@ export default function PortfolioPage() {
 
       <div className="mt-14 grid grid-cols-1 gap-x-6 gap-y-12 sm:grid-cols-2 sm:mt-20 lg:grid-cols-3">
         {weddings.map((w, i) => (
-          <Reveal
-            key={w.slug}
-            delay={i * 90}
-            /* leve desfase editorial en la columna central (desktop) */
-            className={i === 1 ? "lg:mt-16" : ""}
-          >
+          <Reveal key={w.slug} delay={i * 90}>
             <WeddingCard wedding={w} priority={i === 0} />
           </Reveal>
         ))}
