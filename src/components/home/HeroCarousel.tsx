@@ -10,7 +10,7 @@ const INTERVAL = 4800;
  * Carrusel del hero: las fotos se funden entre sí cada cierto tiempo,
  * sin controles visibles. El marco se ve idéntico; solo cambia la imagen.
  */
-export function HeroCarousel({ photos }: { photos: Photo[] }) {
+export function HeroCarousel({ photos, alt }: { photos: Photo[]; alt: string }) {
   const [active, setActive] = useState(0);
 
   useEffect(() => {
@@ -38,7 +38,7 @@ export function HeroCarousel({ photos }: { photos: Photo[] }) {
         >
           <CloudPhoto
             photo={p}
-            alt="Fotografía de boda por Manuel Torres"
+            alt={alt}
             fill
             rounded={false}
             priority={i === 0}

@@ -6,31 +6,37 @@ import { ContactLinks } from "@/components/ui/ContactLinks";
 import { Gallery } from "@/components/gallery/Gallery";
 import { ArrowIcon } from "@/components/ui/icons";
 import { locationGalleryPhotos } from "@/lib/weddings";
-import { getNeighbors, getRegionHub } from "@/lib/locations";
+import { getNeighbors, getRegionHub, localizeLocation, localizeRegion } from "@/lib/locations";
 import { locationJsonLd } from "@/lib/schema";
 import type { Location } from "@/data/locations";
+import { JsonLd } from "@/components/ui/JsonLd";
+import type { Locale } from "@/i18n/config";
+import { getDictionary } from "@/i18n/dictionaries";
+import { localePath } from "@/i18n/routes";
 
 interface LocationPageProps {
+  /** Datos base (en español); se localizan aquí según `locale`. */
   location: Location;
+  locale: Locale;
 }
 
-export function LocationPage({ location }: LocationPageProps) {
-  const region = getRegionHub(location.region);
-  const neighbors = getNeighbors(location, 6);
+export function LocationPage({ location: base, locale }: LocationPageProps) {
+  const t = getDictionary(locale).location;
+  const location = localizeLocation(base, locale);
+  const baseRegion = getRegionHub(location.region);
+  const region = baseRegion && localizeRegion(baseRegion, locale);
+  const neighbors = getNeighbors(base, 6);
+  const toLocation = (slug: string) => localePath(locale, { kind: "location", slug });
   const photos = locationGalleryPhotos();
 
   return (
     <div className="shell pt-14 pb-8 sm:pt-20">
-      <script
-        type="application/ld+json"
-        // eslint-disable-next-line react/no-danger
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(locationJsonLd(location)) }}
-      />
+      <JsonLd data={locationJsonLd(location, locale)} />
 
       <Reveal className="max-w-3xl">
         {region && (
           <Link
-            href={`/fotografo-bodas-${region.slug}`}
+            href={toLocation(region.slug)}
             className="eyebrow inline-flex items-center gap-2 transition-colors hover:text-ink"
           >
             <ArrowIcon className="h-3.5 w-3.5 rotate-180" />
@@ -41,7 +47,7 @@ export function LocationPage({ location }: LocationPageProps) {
           <Pill>{location.province}</Pill>
         </div>
         <h1 className="display mt-6 text-[clamp(2.2rem,1rem+4.4vw,4.2rem)]">
-          Fotógrafo de Bodas en {location.name}
+          {t.h1(location.name)}
         </h1>
         <p className="mt-6 max-w-2xl text-lg leading-relaxed text-muted">
           {location.intro}
@@ -70,37 +76,37 @@ export function LocationPage({ location }: LocationPageProps) {
       </Reveal>
 
       <Reveal delay={160} className="mt-14 sm:mt-20">
-        <p className="eyebrow">Portafolio</p>
+        <p className="eyebrow">{t.portfolioEyebrow}</p>
         <h2 className="display mt-3 text-[clamp(1.6rem,1rem+2.4vw,2.6rem)]">
-          Bodas reales, en el mismo estilo que llevo a {location.name}
+          {t.portfolioTitle(location.name)}
         </h2>
         <p className="mt-4 max-w-2xl text-base leading-relaxed text-muted">
           {location.photoIds && location.photoIds.length > 0
-            ? `Estas son fotografías tomadas en bodas reales en ${location.name}.`
-            : `Todavía no tengo fotografías propias tomadas específicamente en ${location.name}. Estas son bodas reales de mi portafolio en la región — el mismo estilo, luz y cuidado que llevaría a tu boda ahí.`}
+            ? t.ownPhotos(location.name)
+            : t.noOwnPhotos(location.name)}
         </p>
         <div className="mt-8">
-          <Gallery photos={photos} title={`Fotografía de bodas cerca de ${location.name}`} />
+          <Gallery photos={photos} title={t.galleryTitle(location.name)} locale={locale} />
         </div>
       </Reveal>
 
       <Reveal delay={200} className="mt-14 sm:mt-20 text-center">
-        <p className="eyebrow">Contacto</p>
+        <p className="eyebrow">{t.contactEyebrow}</p>
         <h2 className="display mt-3 text-[clamp(1.8rem,1rem+3vw,3rem)]">
-          Cuéntame de tu boda en {location.name}
+          {t.contactTitle(location.name)}
         </h2>
         <div className="mx-auto mt-8 max-w-xl">
-          <ContactLinks />
+          <ContactLinks locale={locale} />
         </div>
       </Reveal>
 
       <Reveal delay={240} className="mt-14 border-t border-line pt-10 sm:mt-20">
-        <p className="eyebrow">También sirvo bodas cerca de {location.name}</p>
+        <p className="eyebrow">{t.nearby(location.name)}</p>
         <div className="mt-5 flex flex-wrap gap-2">
           {neighbors.map((n) => (
             <Link
               key={n.slug}
-              href={`/fotografo-bodas-${n.slug}`}
+              href={toLocation(n.slug)}
               className="rounded-full border border-line px-4 py-2 text-sm text-muted transition-colors hover:border-ink hover:text-ink"
             >
               {n.name}
@@ -108,12 +114,12 @@ export function LocationPage({ location }: LocationPageProps) {
           ))}
         </div>
         <div className="mt-8 flex flex-wrap gap-3">
-          <Button href="/portafolio" variant="ghost">
-            Ver portafolio completo
+          <Button href={localePath(locale, { kind: "portfolio" })} variant="ghost">
+            {t.fullPortfolio}
           </Button>
           {region && (
-            <Button href={`/fotografo-bodas-${region.slug}`} variant="ghost">
-              Todos los municipios de {region.shortName}
+            <Button href={toLocation(region.slug)} variant="ghost">
+              {t.allInRegion(region.shortName)}
             </Button>
           )}
         </div>

@@ -1,3 +1,7 @@
+import type { Locale } from "@/i18n/config";
+import { SABANA_COPY_EN, REGION_COPY_EN } from "@/data/en/locations-sabana.en";
+import { TOWN_FACTS_EN } from "@/data/en/town-facts.en";
+import { buildLocationContentEn } from "@/lib/locationContent.en";
 import {
   REGION_HUBS,
   SABANA_LOCATIONS,
@@ -44,4 +48,38 @@ export function getNeighbors(location: Location, count = 6): Location[] {
 /** true si el slug corresponde a un directorio de región, no a un municipio. */
 export function isRegionSlug(slug: string): boolean {
   return REGION_HUBS.some((r) => r.slug === slug);
+}
+
+/* ---------------------------------------------------------------
+   Localización (inglés). Los datos base están en español; aquí se
+   reemplaza solo el texto visible. Slugs, distancias e `indexable`
+   son los mismos en ambos idiomas, para que el hreflang sea 1:1.
+---------------------------------------------------------------- */
+
+function factToBulletEn(fact: string): string {
+  const clean = fact.startsWith("being ") ? fact.slice(6) : fact;
+  return clean.charAt(0).toUpperCase() + clean.slice(1) + ".";
+}
+
+export function localizeLocation(location: Location, locale: Locale): Location {
+  if (locale === "es") return location;
+
+  const handWritten = SABANA_COPY_EN[location.slug];
+  if (handWritten) return { ...location, ...handWritten };
+
+  const fact = TOWN_FACTS_EN[location.name];
+  const { intro, body } = buildLocationContentEn({
+    slug: location.slug,
+    name: location.name,
+    province: location.province,
+    distanceKm: location.distanceKm,
+    fact,
+  });
+  return { ...location, intro, body, facts: fact ? [factToBulletEn(fact)] : [] };
+}
+
+export function localizeRegion(region: RegionHub, locale: Locale): RegionHub {
+  if (locale === "es") return region;
+  const copy = REGION_COPY_EN[region.slug];
+  return copy ? { ...region, ...copy } : region;
 }

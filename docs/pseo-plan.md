@@ -294,3 +294,16 @@ La skill también recomienda cosas que dependen de tus cuentas externas, no del 
 - Citaciones en directorios (Yelp, BBB) — poco relevantes para Colombia, pero el equivalente local sería perfiles en bodas.com.co / matrimonio.com.co.
 
 Si en algún momento quieres, te guío paso a paso para configurar el Google Business Profile — es probablemente el siguiente paso de mayor impacto para las búsquedas de marca y "cerca de mí".
+
+## 9. Versión en inglés (i18n)
+
+- **Español sin cambios de URL**: todas las URLs históricas (`/`, `/portafolio`, `/contacto`, `/fotografo-bodas-*`) siguen exactamente igual — no se pierde posicionamiento. El español es el idioma por defecto y el `x-default`.
+- **Inglés bajo `/en`** con slugs traducidos: `/en`, `/en/portfolio`, `/en/contact`, `/en/wedding-photographer-[municipio]`, más una landing solo en inglés para parejas extranjeras: `/en/destination-wedding-photographer-colombia`.
+- **hreflang recíproco** (`es`, `en`, `x-default`) en cada página y en `sitemap.xml`; canonical propio por idioma. Mapa de rutas único en `src/i18n/routes.ts`.
+- **Misma regla de indexación en ambos idiomas**: un municipio en `noindex` en español también lo está en inglés.
+- **Idioma automático** (`src/proxy.ts` + `src/i18n/negotiate.ts`): si el navegador prefiere inglés y la persona no ha elegido idioma, una URL en español redirige (307, temporal) a su equivalente en inglés. Nunca redirige a bots ni URLs `/en`; la elección manual (selector en el menú y el footer) se guarda en la cookie `NEXT_LOCALE` y manda sobre el navegador.
+- **Textos**: interfaz en `src/i18n/dictionaries/`; contenido de la Sabana y regiones en `src/data/en/locations-sabana.en.ts`; datos de municipios fase 2/3 en `src/data/en/town-facts.en.ts`; generador en inglés en `src/lib/locationContent.en.ts`.
+
+### Ronda 3 — activada
+
+Sasaima, Guatavita, Silvania, Arbeláez, Tunja, Sogamoso y Restrepo pasan a `indexable: true` (en ambos idiomas) a pedido del cliente.

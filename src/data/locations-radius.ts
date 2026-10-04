@@ -163,6 +163,10 @@ const ACTIVATED = new Set<string>([
   "Duitama",
   "Paipa",
   "Ibagué",
+  // Ronda 3 (docs/pseo-plan.md): evidencia de mercado más débil, activados a pedido del cliente.
+  "Tunja",
+  "Sogamoso",
+  "Restrepo",
 ]);
 
 export const RADIUS_PHASE3: Location[] = TOWNS.map((t) => {
