@@ -5,15 +5,20 @@ import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import monogram from "../../../public/logo-monogram.png";
+import { LanguageSwitch } from "@/components/nav/LanguageSwitch";
+import { getDictionary } from "@/i18n/dictionaries";
+import { localePath } from "@/i18n/routes";
+import type { Locale } from "@/i18n/config";
 
-const LINKS = [
-  { href: "/", label: "Principal" },
-  { href: "/portafolio", label: "Portafolio" },
-  { href: "/contacto", label: "Contacto" },
-];
-
-export function Nav() {
-  const pathname = usePathname();
+export function Nav({ locale }: { locale: Locale }) {
+  const t = getDictionary(locale).nav;
+  const home = localePath(locale, { kind: "home" });
+  const LINKS = [
+    { href: home, label: t.home },
+    { href: localePath(locale, { kind: "portfolio" }), label: t.portfolio },
+    { href: localePath(locale, { kind: "contact" }), label: t.contact },
+  ];
+  const pathname = usePathname() ?? "/";
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
 
@@ -25,7 +30,7 @@ export function Nav() {
   }, []);
 
   const isActive = (href: string) =>
-    href === "/" ? pathname === "/" : pathname.startsWith(href.split("#")[0]);
+    href === home ? pathname === home : pathname.startsWith(href);
 
   return (
     <header
@@ -37,8 +42,8 @@ export function Nav() {
     >
       <nav className="shell flex items-center justify-between h-[4.5rem]">
         <Link
-          href="/"
-          aria-label="Manuel Torres — inicio"
+          href={home}
+          aria-label={t.homeAria}
           className="flex items-center gap-2.5 group"
           onClick={() => setOpen(false)}
         >
@@ -75,13 +80,16 @@ export function Nav() {
               </Link>
             </li>
           ))}
+          <li className="ml-4 flex items-center border-l border-line pl-3">
+            <LanguageSwitch locale={locale} variant="compact" label={t.language} />
+          </li>
         </ul>
 
         {/* Mobile toggle */}
         <button
           onClick={() => setOpen((v) => !v)}
           className="md:hidden flex flex-col gap-[5px] p-2 -mr-2"
-          aria-label={open ? "Cerrar menú" : "Abrir menú"}
+          aria-label={open ? t.closeMenu : t.openMenu}
           aria-expanded={open}
         >
           <span
@@ -105,7 +113,7 @@ export function Nav() {
       {/* Mobile panel */}
       <div
         className={`md:hidden overflow-hidden transition-[max-height] duration-500 ease-out ${
-          open ? "max-h-72" : "max-h-0"
+          open ? "max-h-96" : "max-h-0"
         }`}
       >
         <ul className="shell flex flex-col gap-1 pb-6 pt-1 font-display">
@@ -120,6 +128,14 @@ export function Nav() {
               </Link>
             </li>
           ))}
+          <li className="pt-5">
+            <LanguageSwitch
+              locale={locale}
+              variant="full"
+              label={t.language}
+              onNavigate={() => setOpen(false)}
+            />
+          </li>
         </ul>
       </div>
     </header>

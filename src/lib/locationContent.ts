@@ -20,13 +20,13 @@
  * revisión (ver docs/pseo-plan.md).
  */
 
-function hashIndex(seed: string, mod: number): number {
+export function hashIndex(seed: string, mod: number): number {
   let h = 0;
   for (let i = 0; i < seed.length; i++) h = (h * 31 + seed.charCodeAt(i)) >>> 0;
   return h % mod;
 }
 
-interface ContentInput {
+export interface ContentInput {
   slug: string;
   name: string;
   province: string;

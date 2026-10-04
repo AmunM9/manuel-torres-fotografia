@@ -1,5 +1,7 @@
 import Link from "next/link";
-import { SITE } from "@/lib/site";
+import { SITE, whatsappUrl } from "@/lib/site";
+import type { Locale } from "@/i18n/config";
+import { getDictionary } from "@/i18n/dictionaries";
 import { InstagramIcon, WhatsappIcon, ArrowIcon } from "@/components/ui/icons";
 
 interface ContactLinkProps {
@@ -31,16 +33,17 @@ function ContactLink({ href, label, sub, icon }: ContactLinkProps) {
 
 interface ContactLinksProps {
   className?: string;
+  locale: Locale;
 }
 
 /** Par de botones WhatsApp + Instagram, reutilizado en Contacto y en cada página de ubicación. */
-export function ContactLinks({ className = "" }: ContactLinksProps) {
+export function ContactLinks({ className = "", locale }: ContactLinksProps) {
   return (
     <div className={`flex flex-col gap-4 sm:flex-row ${className}`}>
       <ContactLink
-        href={SITE.whatsapp}
+        href={whatsappUrl(locale)}
         label="WhatsApp"
-        sub="Respuesta rápida"
+        sub={getDictionary(locale).contact.whatsappSub}
         icon={<WhatsappIcon className="h-6 w-6" />}
       />
       <ContactLink

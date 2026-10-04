@@ -4,6 +4,8 @@ import { useState } from "react";
 import dynamic from "next/dynamic";
 import { CloudPhoto } from "@/components/ui/CloudPhoto";
 import type { Photo } from "@/lib/weddings";
+import type { Locale } from "@/i18n/config";
+import { getDictionary } from "@/i18n/dictionaries";
 
 // El lightbox (y su librería) se cargan solo al abrir la primera foto.
 const LightboxView = dynamic(() => import("./LightboxView"), { ssr: false });
@@ -11,12 +13,14 @@ const LightboxView = dynamic(() => import("./LightboxView"), { ssr: false });
 interface GalleryProps {
   photos: Photo[];
   title: string;
+  locale: Locale;
   /** IDs de fotos que solo se ocultan por debajo del breakpoint sm (en escritorio sí aparecen). */
   hideOnMobile?: string[];
 }
 
 /** Galería masonry (CSS columns) con lightbox de navegación una a una. */
-export function Gallery({ photos, title, hideOnMobile }: GalleryProps) {
+export function Gallery({ photos, title, locale, hideOnMobile }: GalleryProps) {
+  const t = getDictionary(locale).gallery;
   const [index, setIndex] = useState(-1);
   const mobileHiddenIds = new Set(hideOnMobile);
 
@@ -30,11 +34,11 @@ export function Gallery({ photos, title, hideOnMobile }: GalleryProps) {
             className={`photo-hover group mb-2 w-full overflow-hidden rounded-photo sm:mb-4 ${
               mobileHiddenIds.has(p.id) ? "hidden sm:block" : "block"
             }`}
-            aria-label={`Abrir foto ${i + 1} de ${photos.length}`}
+            aria-label={t.open(i + 1, photos.length)}
           >
             <CloudPhoto
               photo={p}
-              alt={`${title} — fotografía ${i + 1}`}
+              alt={t.photoAlt(title, i + 1)}
               sizes="(max-width: 1024px) 50vw, 33vw"
               className="transition-[filter] duration-500 group-hover:brightness-[1.03]"
             />

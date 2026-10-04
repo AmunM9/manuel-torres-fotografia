@@ -3,15 +3,21 @@ import { CloudPhoto } from "@/components/ui/CloudPhoto";
 import { Reveal } from "@/components/ui/Reveal";
 import { Pill } from "@/components/ui/Pill";
 import { ContactLinks } from "@/components/ui/ContactLinks";
-import { SITE } from "@/lib/site";
 import { personalPhoto } from "@/lib/weddings";
+import { pageMetadata } from "@/lib/metadata";
+import { getDictionary } from "@/i18n/dictionaries";
+import type { Locale } from "@/i18n/config";
 
-export const metadata: Metadata = {
-  title: "Contacto",
-  description: "Escríbeme para tu boda. " + SITE.bookingNote + ".",
-};
+export function contactMetadata(locale: Locale): Metadata {
+  const t = getDictionary(locale);
+  return pageMetadata(locale, { kind: "contact" }, {
+    title: t.contact.metaTitle,
+    description: t.contact.metaDescription(t.site.bookingNote),
+  });
+}
 
-export default function ContactPage() {
+export function ContactView({ locale }: { locale: Locale }) {
+  const t = getDictionary(locale);
   return (
     <div className="shell py-16 sm:py-24">
       <div className="grid items-center gap-10 lg:grid-cols-12 lg:gap-16">
@@ -24,7 +30,7 @@ export default function ContactPage() {
             />
             <CloudPhoto
               photo={personalPhoto}
-              alt="Manuel Torres, fotógrafo de bodas"
+              alt={t.about.portraitAlt}
               aspect="4/5"
               sizes="(max-width: 1024px) 100vw, 42vw"
             />
@@ -33,16 +39,13 @@ export default function ContactPage() {
 
         {/* Contenido */}
         <Reveal delay={100} className="lg:col-span-7">
-          <Pill>Contacto</Pill>
-          <h1 className="display mt-6 text-[clamp(2.4rem,1rem+4.5vw,4.4rem)]">
-            Cuéntame tu historia
-          </h1>
+          <Pill>{t.contact.pill}</Pill>
+          <h1 className="display mt-6 text-[clamp(2.4rem,1rem+4.5vw,4.4rem)]">{t.contact.title}</h1>
           <p className="mt-6 max-w-md text-lg leading-relaxed text-muted">
-            {SITE.bookingNote}. Escríbeme y hablemos de tu boda: fechas, lugar y
-            todo lo que imaginas.
+            {t.contact.text(t.site.bookingNote)}
           </p>
 
-          <ContactLinks className="mt-9 max-w-xl" />
+          <ContactLinks className="mt-9 max-w-xl" locale={locale} />
         </Reveal>
       </div>
     </div>

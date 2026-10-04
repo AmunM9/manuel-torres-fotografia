@@ -2,12 +2,15 @@ import { CloudPhoto } from "@/components/ui/CloudPhoto";
 import { Reveal } from "@/components/ui/Reveal";
 import { Pill } from "@/components/ui/Pill";
 import { personalPhoto } from "@/lib/weddings";
+import type { Locale } from "@/i18n/config";
+import { getDictionary } from "@/i18n/dictionaries";
 
 /**
  * Sobre mí. NOTA: el texto es un placeholder de tono/filosofía (sin datos
  * biográficos inventados). Manuel puede editarlo libremente.
  */
-export function About() {
+export function About({ locale }: { locale: Locale }) {
+  const t = getDictionary(locale).about;
   return (
     <section className="border-t border-line mt-[var(--space-section)]">
       <div className="shell grid items-center gap-10 pt-14 sm:pt-20 lg:grid-cols-12 lg:gap-16">
@@ -19,7 +22,7 @@ export function About() {
             />
             <CloudPhoto
               photo={personalPhoto}
-              alt="Manuel Torres, fotógrafo de bodas"
+              alt={t.portraitAlt}
               aspect="4/5"
               sizes="(max-width: 1024px) 224px, 22vw"
             />
@@ -27,21 +30,13 @@ export function About() {
         </Reveal>
 
         <Reveal delay={100} className="lg:col-span-8">
-          <Pill>Sobre mí</Pill>
+          <Pill>{t.pill}</Pill>
           <h2 className="display mt-6 text-[clamp(1.9rem,1rem+3vw,3.4rem)]">
-            Soy Manuel Torres
+            {t.title}
           </h2>
           <div className="mt-6 space-y-4 text-lg leading-relaxed text-muted">
-            <p>
-              Soy fotógrafo de bodas y eventos sociales con más de cinco años de
-              experiencia. Busco imágenes elegantes y pulcras, capaces de contar
-              una historia por sí solas.
-            </p>
-            <p>
-              Me gusta acompañar cada celebración sin interrumpirla, para que lo
-              que quede en las fotografías sea justo lo que se vivió: auténtico,
-              cuidado y lleno de emoción.
-            </p>
+            <p>{t.p1}</p>
+            <p>{t.p2}</p>
           </div>
         </Reveal>
       </div>
